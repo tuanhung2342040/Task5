@@ -1,11 +1,12 @@
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Tokenizer {
 
     private String chopMe;
     private int priorDelim = -1;
+
 
     public Tokenizer(String s) {
         chopMe = s;
@@ -83,8 +84,16 @@ public class Tokenizer {
         }
 
         return tok;
-
     }
+
+    public String nextToken (int len) {
+        int start = priorDelim + 1;
+        int end = start + len;
+        String tok = chopMe.substring(start, end);
+        priorDelim = priorDelim + len;
+        return tok;
+    }
+
 
     public ArrayList<String> allTokens (char delim) {
         ArrayList<String> tokens = new ArrayList<String>();
@@ -93,8 +102,6 @@ public class Tokenizer {
         for (i = 0; i < chopMe.length(); i++) {
             if (chopMe.charAt(i) == delim) {
                 tokens.add(chopMe.substring(priorDelim + 1, i));
-
-                //Do not worry if your output seems a little "different" than the example screenshot
                 priorDelim = i;
             }
         }

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -60,27 +59,10 @@ IF THE MAIN FUNCTION HAS BEEN MODIFIED, I WILL NOT GRADE IT.
     */
     public static void parsePhoneNumber(String[] ss) {
         Tokenizer t = new Tokenizer(ss[0]);
-        if(ss[0].equals("604-222-3333")){
-            System.out.println("Your phone number is ");
-            System.out.println(ss[0].substring(0, 3));
-            System.out.println("LOCAL AREA CODE DETECTED!");
-            System.out.println("Your next 3 digits are ");
-            System.out.println(ss[0].substring(4, 7));
-            System.out.println("Your last four digits are ");
-            System.out.println(ss[0].substring(8));
-        }
-        else if(ss[0].equals("778-333-5555")){
-            System.out.println("Your phone number is ");
-            System.out.println(ss[0].substring(0, 3));
-            System.out.println("LOCAL AREA CODE DETECTED!");
-            System.out.println("Your next 3 digits are ");
-            System.out.println(ss[0].substring(4, 7));
-            System.out.println("Your last four digits are ");
-            System.out.println(ss[0].substring(8));
-        }
-        else{
-            System.out.println("Try again!!!1");
-        }
+        System.out.println("Your area code is " + t.nextToken('-'));
+        System.out.println("LOCAL AREA CODE DETECTED!");
+        System.out.println("Your next three digits are " + t.nextToken('-'));
+        System.out.println("Your last four digits are " + t.nextToken('-'));
 
     }
 
@@ -120,12 +102,10 @@ Consider the nextToken() method in your Tokenizer class. Which version, though? 
         if (ss[1].length() < 3){
             System.out.println("This is not long enough");
         }
-        else{
+        else {
             System.out.println("The first five codons are:");
-            for (int i = 0;i < ss[1].length()-(ss[1].length()-15);i+=3){
-                System.out.print(ss[1].charAt(i));
-                System.out.print(ss[1].charAt(i+1));
-                System.out.println(ss[1].charAt(i+2));
+            for (int i = 0; i < 5; i++) {
+                System.out.println(t.nextToken(3));
             }
         }
 
@@ -137,7 +117,13 @@ Consider the nextToken() method in your Tokenizer class. Which version, though? 
     */
     public static void codonsVer2(String[] ss) {
         Tokenizer t = new Tokenizer(ss[1]);
-
+        if (ss[1].length() < 3){
+            System.out.println("This is not long enough");
+        }
+        else {
+            System.out.println("The first five codons are:");
+            System.out.println(t.allTokens(3) );
+        }
     }
 
     /*
@@ -161,19 +147,12 @@ Consider the nextToken() method in your Tokenizer class. Which version, though? 
     */
     public static void wordCount(String[] ss) {
         Tokenizer t = new Tokenizer(ss[2]);
-        ArrayList<String> numbers = new ArrayList<String>();
-        numbers.add(ss[2]);
-        int count = 1;
-        for (int i = 0; i < ss[2].length(); i++) {
-            if (ss[2].charAt(i) == '/' && ss[2].charAt(i+1) != '/' ){
-                count++;
-            }
-        }
-        System.out.println("There are " + count + " words in your text");
-        System.out.println("There are " + numbers.size() + " words in your text" );
+        t.allTokens('/');
+
+
+
 
     }
-
 
     //PLEASE LEAVE THE MAIN METHOD AS IT IS.
     public static void main(String[] args) {

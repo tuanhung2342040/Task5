@@ -122,9 +122,13 @@ Consider the nextToken() method in your Tokenizer class. Which version, though? 
         }
         else {
             System.out.println("The first five codons are:");
-            System.out.println(t.allTokens(3) );
+            System.out.println(t.allTokens(3));
+
+            }
+
+
         }
-    }
+
 
     /*
     Have you noticed how Microsoft Word counts words in the document for you?
@@ -147,12 +151,18 @@ Consider the nextToken() method in your Tokenizer class. Which version, though? 
     */
     public static void wordCount(String[] ss) {
         Tokenizer t = new Tokenizer(ss[2]);
-        t.allTokens('/');
-
-
+        int count = 1;
+        for (int i = 0; i < ss[2].length(); i++) {
+            if (ss[2].charAt(i) == '/' && ss[2].charAt(i+1) != '/' ){
+                count++;
+            }
+        }
+        System.out.println("There are " + count + " words in your text");
 
 
     }
+
+
 
     //PLEASE LEAVE THE MAIN METHOD AS IT IS.
     public static void main(String[] args) {

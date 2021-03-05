@@ -114,8 +114,9 @@ public class Tokenizer {
         int index;
         for (index = interval; index < chopMe.length(); index += interval) {
             tokens.add(chopMe.substring(index - interval , index));
+
         }
-        tokens.add(chopMe.substring(index - interval));
+
         return tokens;
     }
 }

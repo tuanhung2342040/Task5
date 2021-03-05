@@ -102,6 +102,31 @@ Consider the nextToken() method in your Tokenizer class. Which version, though? 
         if (ss[1].length() < 3){
             System.out.println("This is not long enough");
         }
+        else if(ss[1].length() >=3 && ss[1].length() < 6) {
+            System.out.println("The first five codons are:");
+            for (int i = 0; i < 1; i++) {
+                System.out.println(t.nextToken(3));
+            }
+        }
+        else if(ss[1].length() >=6 && ss[1].length() < 9) {
+            System.out.println("The first five codons are:");
+            for (int i = 0; i < 2; i++) {
+                System.out.println(t.nextToken(3));
+            }
+        }
+        else if(ss[1].length() >=9 && ss[1].length() < 12) {
+            System.out.println("The first five codons are:");
+            for (int i = 0; i < 3; i++) {
+                System.out.println(t.nextToken(3));
+            }
+        }
+        else if(ss[1].length() >=12 && ss[1].length() < 15) {
+            System.out.println("The first five codons are:");
+            for (int i = 0; i < 4; i++) {
+                System.out.println(t.nextToken(3));
+            }
+        }
+
         else {
             System.out.println("The first five codons are:");
             for (int i = 0; i < 5; i++) {
@@ -120,16 +145,13 @@ Consider the nextToken() method in your Tokenizer class. Which version, though? 
         if (ss[1].length() < 3){
             System.out.println("This is not long enough");
         }
+
         else {
             System.out.println("The first five codons are:");
             System.out.println(t.allTokens(3));
-
             }
 
-
         }
-
-
     /*
     Have you noticed how Microsoft Word counts words in the document for you?
     English words are "tokens" too, and we have just the tool we need.
@@ -151,20 +173,16 @@ Consider the nextToken() method in your Tokenizer class. Which version, though? 
     */
     public static void wordCount(String[] ss) {
         Tokenizer t = new Tokenizer(ss[2]);
-        int count = 1;
+        ArrayList<Character> count = new ArrayList<>(0);
         for (int i = 0; i < ss[2].length(); i++) {
-            if (ss[2].charAt(i) == '/' && ss[2].charAt(i+1) != '/' ){
-                count++;
+            if (ss[2].charAt(i) == ('/')) {
+                    count.add(ss[2].charAt(i));
             }
         }
-        System.out.println("There are " + count + " words in your text");
-
-
+        System.out.println(t.allTokens('/'));
+        System.out.println("There are " + (count.size() + 1 )+ " words in your text");
     }
-
-
-
-    //PLEASE LEAVE THE MAIN METHOD AS IT IS.
+        //PLEASE LEAVE THE MAIN METHOD AS IT IS.
     public static void main(String[] args) {
         parsePhoneNumber(args);
         codonsVer1(args);
